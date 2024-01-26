@@ -21,7 +21,8 @@ if [[ -z "${SONARCLOUD_URL}" ]]; then
   SONARCLOUD_URL="https://sonarcloud.io"
 fi
 
-GITHUB_REPOSITORY_NAME=`echo ${GITHUB_REPOSITORY} | cut -d/ -f2`
+GITHUB_REPOSITORY_NAME=`echo ${GITHUB_REPOSITORY} | cut -d/ -f2
+PROJECT_KEY=`echo ${GITHUB_REPOSITORY} | sed 's|/|_|g'`
 
 if [[ -n "${GITHUB_BASE_REF}" ]]; then
   PR_NUMBER=`echo ${GITHUB_REF} | cut -d/ -f3`
@@ -29,10 +30,10 @@ fi
 
 unset JAVA_HOME
 
-sonar-scanner \
+sonar-scanner -X \
   -Dsonar.host.url=${SONARCLOUD_URL} \
-  -Dsonar.organization=${GITHUB_REPOSITORY_OWNER} \
-  -Dsonar.projectKey=${GITHUB_REPOSITORY_NAME} \
+  -Dsonar.organization=interfolio \
+  -Dsonar.projectKey=${PROJECT_KEY} \
   -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} \
   -Dsonar.branch.name=${GITHUB_REF_NAME} \
   -Dsonar.scm.revision=${GITHUB_SHA} \
@@ -44,5 +45,3 @@ sonar-scanner \
   -Dsonar.pullrequest.github.repository=${GITHUB_REPOSITORY} \
   -Dsonar.sourceEncoding=UTF-8 \
   ${INPUT_ARGS}
-
-set -x
