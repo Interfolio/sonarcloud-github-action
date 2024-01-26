@@ -1,9 +1,9 @@
 FROM sonarsource/sonar-scanner-cli:5.0
 
 LABEL version="0.0.1" \
-      repository="https://github.com/sonarsource/sonarcloud-github-action" \
-      homepage="https://github.com/sonarsource/sonarcloud-github-action" \
-      maintainer="SonarSource" \
+      repository="https://github.com/Interfolio/sonarcloud-github-action" \
+      homepage="https://github.com/Interfolio/sonarcloud-github-action" \
+      maintainer="Interfolio" \
       com.github.actions.name="SonarCloud Scan" \
       com.github.actions.description="Scan your code with SonarCloud to detect bugs, vulnerabilities and code smells in more than 25 programming languages." \
       com.github.actions.icon="check" \
