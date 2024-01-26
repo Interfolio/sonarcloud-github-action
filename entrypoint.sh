@@ -2,12 +2,12 @@
 
 set -e
 
-if [[ -f "${INPUT_PROJECTBASEDIR%/}/pom.xml" ]]; then
+if [[ -f "${INPUT_PROJECT_BASE_DIR%/}/pom.xml" ]]; then
   echo "Maven project detected. You should run the goal 'org.sonarsource.scanner.maven:sonar' during build rather than using this GitHub Action."
   exit 1
 fi
 
-if [[ -f "${INPUT_PROJECTBASEDIR%/}/build.gradle" ]]; then
+if [[ -f "${INPUT_PROJECT_BASE_DIR%/}/build.gradle" ]]; then
   echo "Gradle project detected. You should use the SonarQube plugin for Gradle during build rather than using this GitHub Action."
   exit 1
 fi
@@ -25,12 +25,14 @@ fi
 unset JAVA_HOME
 
 set +x
+export SONAR_TOKEN=${INPUT_SONAR_TOKEN}
+set -x
+
 sonar-scanner \
-  -Dsonar.login=${INPUT_SONAR_TOKEN} \
   -Dsonar.host.url=${SONARCLOUD_URL} \
   -Dsonar.organization=${GITHUB_REPOSITORY_OWNER} \
   -Dsonar.projectKey=${GITHUB_REPOSITORY_NAME} \
-  -Dsonar.projectBaseDir=${INPUT_PROJECTBASEDIR} \
+  -Dsonar.projectBaseDir=${INPUT_PROJECT_BASE_DIR} \
   -Dsonar.branch.name=${GITHUB_REF_NAME} \
   -Dsonar.scm.revision=${GITHUB_SHA} \
   -Dsonar.scm.disabled=true \
