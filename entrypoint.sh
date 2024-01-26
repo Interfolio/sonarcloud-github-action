@@ -21,7 +21,7 @@ if [[ -z "${SONARCLOUD_URL}" ]]; then
   SONARCLOUD_URL="https://sonarcloud.io"
 fi
 
-GITHUB_REPOSITORY_NAME=`echo ${GITHUB_REPOSITORY} | cut -d/ -f2
+GITHUB_REPOSITORY_NAME=`echo ${GITHUB_REPOSITORY} | cut -d/ -f2`
 PROJECT_KEY=`echo ${GITHUB_REPOSITORY} | sed 's|/|_|g'`
 
 if [[ -n "${GITHUB_BASE_REF}" ]]; then
