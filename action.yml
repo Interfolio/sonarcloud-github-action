@@ -11,12 +11,6 @@ runs:
   entrypoint: "/entrypoint.sh"
   post-entrypoint: "/cleanup.sh"
 inputs:
-  token:
-    description: SonarCloud token
-    require: true
-#  github-token:
-#    description: Github token for build
-#    require: true
   args:
     description: Additional arguments to the sonarcloud scanner
     required: false
