@@ -14,7 +14,7 @@ inputs:
   args:
     description: Additional arguments to the sonarcloud scanner
     required: false
-  project-base-dir:
+  projectBaseDir:
     description: Set the sonar.projectBaseDir analysis property
     required: false
     default: .
