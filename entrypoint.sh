@@ -30,7 +30,7 @@ fi
 
 unset JAVA_HOME
 
-sonar-scanner -X \
+sonar-scanner \
   -Dsonar.host.url=${SONARCLOUD_URL} \
   -Dsonar.organization=interfolio \
   -Dsonar.projectKey=${PROJECT_KEY} \
