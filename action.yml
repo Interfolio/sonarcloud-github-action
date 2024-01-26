@@ -18,3 +18,6 @@ inputs:
     description: Set the sonar.projectBaseDir analysis property
     required: false
     default: .
+  coverageBaseDir:
+    description: Alternative base path for processing coverage reports
+    required: false

@@ -32,6 +32,11 @@ else
   PR_BRANCH=${GITHUB_HEAD_REF}
 fi
 
+if [[ -n "${INPUT_COVERAGEBASEDIR}" ]]; then
+  mkdir -p "$(dirname "${INPUT_COVERAGEBASEDIR}")"
+  ln -s /github/workspace ${INPUT_COVERAGEBASEDIR}
+fi
+
 unset JAVA_HOME
 
 sonar-scanner \
